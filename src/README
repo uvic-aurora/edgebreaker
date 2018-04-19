@@ -1,0 +1,45 @@
+How to run the encode_mesh and decode_mesh programs:
+
+1. Please modified inside the Makefile for the directory into which the SPL is installed , i.e., 
+change the directory path of the SPL_TOPDIR
+
+2. Use the Make utility to generate the execution file: (Command: make all)
+
+==========================
+Run encode_mesh program, and save the compressed EB file to $eb_file:
+./encode_mesh < $mesh_dir/bunny_hole.off > $eb_file
+
+==========================
+Run decode_mesh program, and save the decompressed OFF file to $off_file:
+./decode_mesh < $mesh_dir/bunny_hole.eb > $off_file
+
+==========================
+Run encode_mesh and decode_mesh programs together, and save the decompressed OFF file to $off_file:
+./encode_mesh < $mesh_dir/bunny_hole.off | ./decode_mesh > $off_file
+
+==========================
+To prints help information:
+./encode_mesh -h
+./decode_mesh -h
+
+==========================
+To collects the results information:
+./encode_mesh < $mesh_dir/bunny_hole.off -r $results_file
+./decode_mesh < $mesh_dir/bunny_hole.eb -r $results_file
+
+
+How to run the mesh_clean program:
+1. Use the Make utility to generate the execution file: (Command: make mesh_clean)
+
+==========================
+Remove duplicated vertices only, and save the output OFF file to $off_file:
+./mesh_clean < $mesh_dir/crank.off > $off_file
+
+==========================
+Remove duplicated vertices and scaling, and save the output OFF file to $off_file:
+./mesh_clean -s $scaling_factor < $mesh_dir/crank.off > $off_file
+(E.g.: ./mesh_clean -s 100 < $mesh_dir/crank.off > $off_file)
+
+WARNING:
+The mesh_clean program doesn't contain the option to ONLY scaling the vertices without check and remove the duplicated vertices.  
+This is due to the fact that the primary goal for this software is to check and remove the duplicated vertices.
