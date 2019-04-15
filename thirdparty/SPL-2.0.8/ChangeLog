@@ -1,0 +1,516 @@
+commit 63ccea1aa948c6f0deb7d889bc1916cb12889478
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:   Wed Jan 30 15:17:02 2019 -0800
+
+    Bump the version number.
+
+M	CMakeLists.txt
+
+commit dbf1da70c0b2857e6ec197e965db2db5fca614ac
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Thu Mar 1 17:33:01 2018 -0800
+
+    Added the skeleton for a simple image derivative calculation program.
+
+M	src/demo/CMakeLists.txt
+A	src/demo/imageDerivative.cpp
+
+commit 940641f065f0785b71d04efa7eccea6acfcc2cf7
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Feb 23 11:09:18 2018 -0800
+
+    Commented out some obsolete SDE stuff in the my_build script.
+
+M	build/my_build
+
+commit 244e596b74fa16103e38e292c0e0ac4b26a0efa3
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Sep 15 20:05:38 2017 -0700
+
+    Fixed a bug with the use of Bessel functions and some compilers.
+
+M	src/include/SPL/math.hpp
+
+commit 37092475d5974ef06acb3c48b091e43e70e7eca7
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Sep 15 12:10:56 2017 -0700
+
+    Changes for Travis CI.
+
+M	build/travis/prebuild
+
+commit 65216e2f8b7904f517c1738f724adead5a74cc23
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Sep 15 09:01:33 2017 -0700
+
+    Changed the build to use C++17.
+    Changed the code to allow Bessel functions from the C++17 standard
+    library
+    to be used.
+
+M	CMakeLists.txt
+M	src/include/SPL/config.hpp.in
+M	src/include/SPL/math.hpp
+
+commit 37e989da01f32a14b0fe0c9cae7a548fcd76582b
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Sep 15 08:09:17 2017 -0700
+
+    Bumped the version number.
+
+M	CMakeLists.txt
+
+commit 2479fdd3fc5c5e330eb59379e3d465ac391bebc1
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Sep 15 08:05:10 2017 -0700
+
+    Eliminated reliance on functionality removed in C++17.
+
+M	src/include/SPL/Array1.hpp
+M	src/include/SPL/Array2.hpp
+
+commit f60b8df2ee6e3e2f7b1992cd040f0dcf7135d6c9
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Thu Sep 14 17:11:20 2017 -0700
+
+    Added an option to the main CMakeLists file that allows the building
+    of the
+    documentation to be disabled.
+
+M	CMakeLists.txt
+M	build/my_build
+
+commit c7bd7e98cdfe7484ce2d6952ec450b80e03d13b0
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jul 31 18:59:59 2017 -0700
+
+    Made the sqr function inline.
+
+M	src/include/SPL/math.hpp
+
+commit f2b730ce1c7dfe7d27e97b716571879f58df972b
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Thu Mar 23 08:28:19 2017 -0700
+
+    Bumped the version number.
+
+M	CMakeLists.txt
+
+commit ea5ce45cdc132b2e3567c4882a02b294d82976e4
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Thu Mar 23 08:00:42 2017 -0700
+
+    Rewrote the FindSndFile module.
+    Changed SPLConfig.cmake to preconfigure the SndFile library by
+    default.
+
+M	build/cmake/SPLConfig.cmake.in
+M	build/cmake/modules/FindSndFile.cmake
+
+commit 99573878c6244904a189177992fd1a7d9eebfc91
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Feb 6 19:28:28 2017 -0800
+
+    Added the "-I" option to my_build to allow the installation directory
+    to be specified.
+
+M	build/my_build
+
+commit bc333e7c9e971eba849ff05382fe43c02e02e2c9
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Feb 3 12:18:21 2017 -0800
+
+    Bumped the version number.
+
+M	CMakeLists.txt
+
+commit 7163f10e42546828651bcea435015e1559d58887
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Tue Jan 17 07:20:07 2017 -0800
+
+    Fixed the incorrect EXAMPLE_PATH (which was resulting in directories
+    outside
+    the source tree being searched).
+
+M	doc/Doxyfile.in
+
+commit d83337dd7608525470ea7233a213440e0fe89615
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Tue Jan 17 07:12:23 2017 -0800
+
+    Some of the test programs were creating files in /tmp.
+    This would lead to tests sometimes failing due to permission problems.
+    These problematic tests have been modified so that they no longer
+    create files in /tmp.
+
+M	src/test/array1_test.cpp
+M	src/test/array2_test.cpp
+
+commit 9b146824bb71d2f827b02e3e49e9ae55ec805a0d
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 14:52:07 2017 -0800
+
+    Bump the version number.
+
+M	CMakeLists.txt
+
+commit e03c5c903d22f68bad9783194b25304d70fe8eba
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 12:02:02 2017 -0800
+
+    Cleaned up part of the build script.
+
+M	build/travis/build
+
+commit 55023d3a7e846d4b92e1c62be68f811b1c8c400d
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 11:51:27 2017 -0800
+
+    More changes for Travis CI
+
+M	build/travis/build
+
+commit d33b066ad16a6beec7e0a436afe6fa65ec13fe9e
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 11:41:53 2017 -0800
+
+    More changes for Travis CI
+
+M	build/travis/build
+
+commit a271a65ac0a6b2beb883ab7e0c01dd6d8e021b1f
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 11:34:58 2017 -0800
+
+    More changes for Travis CI
+
+M	build/travis/CMakeLists.txt
+
+commit 2f03573dc45126108937e88736afb5e1debd2f69
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 11:27:49 2017 -0800
+
+    Fixed a build script problem.
+
+M	build/travis/build
+
+commit 4f574c2d54d869d4cf0473aa847ab56aea852b6b
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 11:23:14 2017 -0800
+
+    Added a test build against the installed library (for Travis CI).
+
+A	build/travis/CMakeLists.txt
+M	build/travis/build
+
+commit c1abaf4b979cd76f482e679c8799748b9baf4815
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 9 10:00:52 2017 -0800
+
+    Changed the name used for the library from "spl" to "SPL".
+    Modified the build process to generate and install a package
+    configuration file.
+
+M	CMakeLists.txt
+A	build/cmake/SPLConfig.cmake.in
+M	src/demo/CMakeLists.txt
+M	src/lib/CMakeLists.txt
+M	src/test/CMakeLists.txt
+
+commit 6d154f534d4e5dd4f73a83c6cc4e0b3340a7abe5
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sat Jan 7 09:18:32 2017 -0800
+
+    Add a comment to the installation instructions clarifying that
+    in-source
+    builds are not supported.
+
+M	INSTALL
+
+commit ab357b2ff68e1708f7547e72f8ade7e0448553c2
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 2 07:56:39 2017 -0800
+
+    Bumped the version number.
+
+M	CMakeLists.txt
+
+commit b0e110517cad0f3417ca7ffd8c541480438f3ce6
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 2 07:28:28 2017 -0800
+
+    Made some improvements to the installation instructions.
+
+M	INSTALL
+
+commit 0cee789fb0af42c00e4bb22264a5bf5a0a369171
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 2 06:36:25 2017 -0800
+
+    Made more minor documentation changes.
+
+M	INSTALL
+
+commit 756086c3afc2f360230b882bb8b8f6203886e007
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 2 06:33:08 2017 -0800
+
+    Added options for building with various code sanitizers.
+
+M	CMakeLists.txt
+M	INSTALL
+A	build/cmake/modules/Sanitizers.cmake
+
+commit ff60094e731bb4b2b50e21e92b9374d409fbffc5
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Mon Jan 2 06:05:56 2017 -0800
+
+    Made some minor improvements to the installation instructions.
+
+M	INSTALL
+
+commit 5dfbbcf1da4fd063b894acf41483d479b8312489
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sun Jan 1 13:15:23 2017 -0800
+
+    Bumped the version number.
+
+M	CMakeLists.txt
+
+commit 19d0da56e37287ac8952b2966e176bee4ef8eb80
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sun Jan 1 13:10:21 2017 -0800
+
+    Fixed the tarball creation script so that it builds the PDF manual.
+
+M	build/make_dist
+
+commit 1270ac8bccae7519f7b032536b6e4c977258efed
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sun Jan 1 12:35:36 2017 -0800
+
+    Removed the derived file Doxyfile, which should not be under version
+    control.
+
+D	doc/Doxyfile
+
+commit 801c3c3ff10ae6b7fab8cc656f7816dcbeed2b38
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sun Jan 1 12:13:07 2017 -0800
+
+    Bumped the version number.
+
+M	CMakeLists.txt
+
+commit 221e4abac550aab26dfe7913082d8f6aec5c7ba1
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sun Jan 1 12:05:58 2017 -0800
+
+    Corrected an inaccuracy in the installation instructions.
+
+M	INSTALL
+
+commit 48e236570b34db8b74946c22f50013beaddcaef6
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sat Dec 31 17:27:05 2016 -0800
+
+    Added preliminary version of script for making tarballs.
+
+A	build/make_dist
+
+commit 4990b20f7976c9551d69c78937f51117e5185df7
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Sat Dec 31 05:31:41 2016 -0800
+
+    Revised some of the documentation.
+
+M	INSTALL
+M	README
+
+commit d123abcd26b1ebba538df730d91c0d49fccbb08e
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 19:19:15 2016 -0800
+
+    Applied many fixes and improvements to the manual.
+
+M	CMakeLists.txt
+M	INSTALL
+M	doc/Doxyfile
+M	doc/Doxyfile.in
+M	doc/src/getting_started.dox
+M	doc/src/mainpage.dox.in
+M	src/include/SPL/arithCoder.hpp
+
+commit 2fdfb4093b7c1840ef5bdc0b4f81019d311655f0
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 17:01:59 2016 -0800
+
+    Renamed some header-file templates.
+
+R100	src/include/SPL/config.hpp.in.cmake
+src/include/SPL/config.hpp.in
+R100	src/include/SPL/version.hpp.in.cmake
+src/include/SPL/version.hpp.in
+M	src/lib/CMakeLists.txt
+
+commit aa0cb209646ba0acb0d78da928770af918152b28
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 16:55:24 2016 -0800
+
+    Add support to handle the case where glut.h is not in the GL
+    directory.
+
+M	build/cmake/modules/FindGLUT_hacked.cmake
+M	src/demo/wireframe.cpp
+M	src/include/SPL/config.hpp.in.cmake
+
+commit abd14c84f84f616070a99e18308771aad438cb41
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 16:40:07 2016 -0800
+
+    Disable the use of Boost Threads.
+
+M	CMakeLists.txt
+
+commit 95f548358ca4b789bea7462fda0a6c247e5605e8
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 16:33:04 2016 -0800
+
+    More changes for CI
+
+M	.travis.yml
+
+commit c1d7c959b4578a576d86f1f239a49ff2b3f47472
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 16:31:38 2016 -0800
+
+    More changes for CI
+
+M	build/appveyor/build.bat
+
+commit 0634e64f92d8402e391386953202bd3bb3edb0c1
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 16:14:12 2016 -0800
+
+    More changes for CI
+
+M	build/travis/prebuild
+
+commit 92c3087c9e96ce31693e6afe1ffd8c4aa73607d1
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 15:52:26 2016 -0800
+
+    More changes for CI
+
+M	build/travis/prebuild
+
+commit 61c341535e4d2e856b419afa9321d5d4fa652168
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 15:44:35 2016 -0800
+
+    More changes for CI
+
+M	build/travis/prebuild
+
+commit 3106fe27972a64f5e2d779ff1dfa86b8e6834857
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 15:36:54 2016 -0800
+
+    Add preliminary support for Travis CI and Appveyor.
+
+A	.travis.yml
+A	appveyor.yml
+A	build/appveyor/build.bat
+A	build/travis/build
+A	build/travis/prebuild
+
+commit 32a42de0154efdb472270a4507c71661ca183505
+Author: Michael Adams <mdadams@ece.uvic.ca>
+Date:	Fri Dec 30 14:24:45 2016 -0800
+
+    Initial commit
+
+A	CMakeLists.txt
+A	INSTALL
+A	LICENSE
+A	LICENSE_SHORT
+A	README
+A	bin/test_wrapper.in
+A	bin/utilities
+A	build/cmake/modules/EnableAssertions.cmake
+A	build/cmake/modules/FindGLUT_hacked.cmake
+A	build/cmake/modules/FindGMP.cmake
+A	build/cmake/modules/FindSndFile.cmake
+A	build/cmake/modules/InSourceBuild.cmake
+A	build/my_build
+A	data/polygon_meshes/tetrahedron.off
+A	data/sequences/sequence1.dat
+A	data/sequences/sequence2.dat
+A	doc/CMakeLists.txt
+A	doc/Doxyfile
+A	doc/Doxyfile.in
+A	doc/src/bugs.dox
+A	doc/src/faq.dox
+A	doc/src/getting_started.dox
+A	doc/src/mainpage.dox.in
+A	doc/src/modules.dox
+A	src/demo/CMakeLists.txt
+A	src/demo/arithCoder.hpp
+A	src/demo/arithDecoder.cpp
+A	src/demo/arithEncoder.cpp
+A	src/demo/array1cmp.cpp
+A	src/demo/array2cmp.cpp
+A	src/demo/audioToText.cpp
+A	src/demo/cgalDemo.cpp
+A	src/demo/filterDesignDemo.cpp
+A	src/demo/imageFilter.cpp
+A	src/demo/makeAudio.cpp
+A	src/demo/mandelbrot.cpp
+A	src/demo/run_arithcoder
+A	src/demo/run_cgalDemo
+A	src/demo/run_sequence2
+A	src/demo/sequence1.cpp
+A	src/demo/sequence2.cpp
+A	src/demo/timerDemo.cpp
+A	src/demo/wireframe.cpp
+A	src/include/SPL/Arcball.hpp
+A	src/include/SPL/Array1.hpp
+A	src/include/SPL/Array2.hpp
+A	src/include/SPL/Sequence.hpp
+A	src/include/SPL/Sequence1.hpp
+A	src/include/SPL/Sequence2.hpp
+A	src/include/SPL/Timer.hpp
+A	src/include/SPL/arithCoder.hpp
+A	src/include/SPL/audioFile.hpp
+A	src/include/SPL/bitStream.hpp
+A	src/include/SPL/cgalUtil.hpp
+A	src/include/SPL/config.hpp.in.cmake
+A	src/include/SPL/filterDesign.hpp
+A	src/include/SPL/mCoder.hpp
+A	src/include/SPL/math.hpp
+A	src/include/SPL/misc.hpp
+A	src/include/SPL/pnmCodec.hpp
+A	src/include/SPL/version.hpp.in.cmake
+A	src/lib/CMakeLists.txt
+A	src/lib/Sequence2.cpp
+A	src/lib/Timer.cpp
+A	src/lib/arithCoder.cpp
+A	src/lib/audioFile.cpp
+A	src/lib/bitStream.cpp
+A	src/lib/filterDesign.cpp
+A	src/lib/mCoder.cpp
+A	src/lib/pnmCodec.cpp
+A	src/test/CMakeLists.txt
+A	src/test/array1_test.cpp
+A	src/test/array2_test.cpp
+A	src/test/convolve.dat
+A	src/test/convolve1.cpp
+A	src/test/convolve2.cpp
+A	src/test/convolve2.dat
+A	src/test/pnm_test.cpp
+A	src/test/run_array1_test
+A	src/test/run_array2_test
+A	src/test/run_sequence1_test
+A	src/test/run_sequence2_test
+A	src/test/sequence1_test.cpp
+A	src/test/sequence2_test.cpp

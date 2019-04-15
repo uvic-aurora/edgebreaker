@@ -1,0 +1,13 @@
+var searchData=
+[
+  ['decodebypass',['decodeBypass',['../classSPL_1_1MultiArithDecoder.html#a95586f6b65c4503582f10d314c60ba5d',1,'SPL::MultiArithDecoder::decodeBypass()'],['../classSPL_1_1BinArithDecoder.html#a144a763f1891c7cfa1fda9bd134ab50f',1,'SPL::BinArithDecoder::decodeBypass()'],['../classSPL_1_1MDecoder.html#a1b09b7d419cc1d4a8127a780b92b0b9a',1,'SPL::MDecoder::decodeBypass()']]],
+  ['decodepbm',['decodePbm',['../group__Image__IO.html#gaaddcb788ab53255340d671e063716d7b',1,'SPL']]],
+  ['decodepgm',['decodePgm',['../group__Image__IO.html#ga0311268cb7bd9bc5cb0c17433572dee5',1,'SPL']]],
+  ['decodepnm',['decodePnm',['../group__Image__IO.html#ga44a2f08f53305d4aaf39e6d040d182ff',1,'SPL']]],
+  ['decodeppm',['decodePpm',['../group__Image__IO.html#gafdefeacb6896106495c0efac2fdd6ef1',1,'SPL']]],
+  ['decoderegular',['decodeRegular',['../classSPL_1_1MultiArithDecoder.html#a9e35f4f355768d8272acfb4ed38f8200',1,'SPL::MultiArithDecoder::decodeRegular()'],['../classSPL_1_1BinArithDecoder.html#a36e4087a6f681bf4f1a4a14ad74cc5fa',1,'SPL::BinArithDecoder::decodeRegular()'],['../classSPL_1_1MDecoder.html#ad1837bf7e12671d893f995ce0491d4b1',1,'SPL::MDecoder::decodeRegular()']]],
+  ['degtorad',['degToRad',['../group__Math__util.html#gad36b8cdeba0d7979e3dec0d3df02cfc7',1,'SPL']]],
+  ['downsample',['downsample',['../group__Sequence1.html#ga72f351125a956688ffedb05aa615ab25',1,'SPL::downsample(const Sequence1&lt; T &gt; &amp;f, int factor)'],['../group__Sequence2.html#ga5640de8333283de8c168b004414e514e',1,'SPL::downsample(const Sequence2&lt; T &gt; &amp;f, int factorX, int factorY)']]],
+  ['dump',['dump',['../classSPL_1_1MultiArithEncoder.html#a657d5a9d22f091413b2c7fb96e999571',1,'SPL::MultiArithEncoder::dump()'],['../classSPL_1_1MultiArithDecoder.html#ac196f26e8c0d2b40691d90135260568a',1,'SPL::MultiArithDecoder::dump()'],['../classSPL_1_1BinArithEncoder.html#a4894dd2364771b860a0f2e53da2458c8',1,'SPL::BinArithEncoder::dump()'],['../classSPL_1_1BinArithDecoder.html#a50f677a6c1c4dfef75abfbb376ff5496',1,'SPL::BinArithDecoder::dump()'],['../group__Array1.html#ga175a73a89d67e97c4900e7fe4e6a95c5',1,'SPL::Array1::dump()'],['../group__Array2.html#ga2e96b9bfcf75125eed567b428d48954b',1,'SPL::Array2::dump()'],['../classSPL_1_1InputBitStream.html#a1d12b5315a7cf71dd4dce26c5b106dd1',1,'SPL::InputBitStream::dump()'],['../classSPL_1_1OutputBitStream.html#a37e1db4d0cfef6ea58dfbda01e7e366d',1,'SPL::OutputBitStream::dump()'],['../classSPL_1_1MEncoder.html#acaddd8ebcebee64185e027ddb861bf27',1,'SPL::MEncoder::dump()'],['../classSPL_1_1MDecoder.html#ac1798c72d5c241f4fb507bf1de943c34',1,'SPL::MDecoder::dump()']]],
+  ['dumpmodels',['dumpModels',['../classSPL_1_1BinArithEncoder.html#a8f5f03b3965c72c80ddf4f3fb9fe8455',1,'SPL::BinArithEncoder']]]
+];

@@ -1,0 +1,38 @@
+/*!
+
+\page faq Frequently Asked Questions (FAQ)
+
+The following is a list of common questions/problems encountered
+when using the library.
+
+<ul>
+
+<li>
+I would like to avoid many stressful days and sleepless nights debugging
+my code that uses the SPL library.
+Do you have any suggestions on how I can avoid needless mistakes?
+Are there any common pitfalls that I should be particularly careful
+to avoid?
+
+Sadly, one of the most common sources of problems is not reading
+the documentation and making incorrect assumptions about how the
+library works.
+Unfortunately, an incorrect assumption about how the library
+works can be quite costly, leading to hours of unnecessary debugging time.
+
+<li>
+My code is triggering a failed assertion in the SPL library.
+What does this mean?
+
+The SPL library makes frequent use of assertions in order to assist in the
+detection of bugs.
+If an assertion fails, the code has encountered a situation that should
+never occur in correct code.
+The most likely cause is that you are using the library incorrectly.
+Be sure that you have read the documentation for the parts of
+the library that you are using in order to ensure that you are
+using it correctly.
+
+</ul>
+
+*/

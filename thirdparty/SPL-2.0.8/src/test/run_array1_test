@@ -1,0 +1,13 @@
+#! /bin/bash
+
+cmd_dir=`dirname $0` || exit 1
+. $cmd_dir/../../bin/utilities || exit 1
+#start_log || panic "cannot start log"
+
+if [ -n "$CMAKE_BINARY_DIR" ]; then
+	bin_dir="$CMAKE_BINARY_DIR/src/test"
+else
+	bin_dir="$cmd_dir"
+fi
+
+$bin_dir/array1_test || panic "test failed"

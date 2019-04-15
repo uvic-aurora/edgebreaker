@@ -1,0 +1,10 @@
+#! /bin/bash
+
+cmd_dir=`dirname $0` || exit 1
+. $cmd_dir/../../bin/utilities || exit 1
+#start_log || panic "cannot start log"
+
+data_dir=$cmd_dir/../../data/sequences
+in_file=$data_dir/sequence2.dat
+
+$cmd_dir/sequence2 < $in_file || panic "test failed"

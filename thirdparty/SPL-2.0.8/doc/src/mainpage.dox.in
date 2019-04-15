@@ -1,0 +1,22 @@
+/*!
+ * @mainpage @SPL_FULL_NAME@ Reference Manual (Version @SPL_VERSION@)
+ *
+ * @section intro Introduction
+ *
+ * The Signal Processing Library (SPL) provides several classes
+ * and associated code that are useful for various signal/geometry processing
+ * applications.
+ * The SPL was developed by
+ * <a href="http://www.ece.uvic.ca/~mdadams">Michael Adams</a>
+ * from the Department of Electrical and Computer Engineering at the 
+ * University of Victoria, Victoria, BC, Canada.
+ *
+ * @section license License
+ * @verbinclude LICENSE_SHORT
+ *
+ * @section bugs Reporting Bugs
+ *
+ * Please send any bug reports to mdadams@ece.uvic.ca.
+ */
+
+//@mainpage notitle

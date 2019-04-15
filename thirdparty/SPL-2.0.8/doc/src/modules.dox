@@ -1,0 +1,55 @@
+/*!
+
+@defgroup arrays_sequences Arrays and Sequences
+@brief One- and two-dimensional arrays and sequences.
+@{
+	@defgroup Array1 One-Dimensional Arrays
+	@brief One-dimensional arrays.
+
+	@defgroup Array2 Two-Dimensional Arrays
+	@brief Two-dimensional arrays.
+
+	@defgroup Sequence1 One-Dimensional Sequences
+	@brief One-dimensional sequences.
+
+	@defgroup Sequence2 Two-Dimensional Sequences
+	@brief Two-dimensional sequences.
+@}
+
+@defgroup BitStream Bit Stream I/O
+@brief Bit streams.
+
+@defgroup audio_image_codecs Audio and Image Codecs
+@brief Audio and image codecs.
+@{
+	@defgroup Audio_IO Audio Codecs
+	@brief Audio file I/O support.
+
+	@defgroup Image_IO Image Codecs
+	@brief Image file I/O support.
+@}
+
+@defgroup Filter_design Filter Design
+@brief Filter design
+
+@defgroup Profiling CPU and Memory Utilization
+@brief Support for measuring CPU and memory utilization.
+
+@defgroup Math_util Math Utilities
+@brief Math utilities
+
+@defgroup CGAL_util CGAL Utilities
+@brief CGAL utilities
+
+@defgroup arithmetic_coders Arithmetic Coders
+@brief Arithmetic coders.
+@{
+	@defgroup MCoder M-Coder
+	@brief M-Coder (binary arithmetic coder).
+
+	@defgroup ArithCoder Binary and m-ary Arithmetic Coders
+	@brief Binary and m-ary arithmetic coders.
+@}
+
+ */
+

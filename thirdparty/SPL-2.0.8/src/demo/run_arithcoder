@@ -1,0 +1,41 @@
+#! /bin/sh
+
+cmd_dir=`dirname $0` || exit 1
+. $cmd_dir/../../bin/utilities || exit 1
+#start_log || panic "cannot start log"
+
+tmpDir=`make_tmp_dir` || panic "cannot make temporary directory"
+origFile=$tmpDir/original
+encFile=$tmpDir/encoded
+decFile=$tmpDir/decoded
+
+encode="$cmd_dir/arithEncoder"
+decode="$cmd_dir/arithDecoder"
+
+numBlocks=1024
+blockSize=1057
+
+#numBlocks=100
+#blockSize=512
+#cmd1=
+#cmd2="valgrind --tool=callgrind"
+
+probList="0.001 0.01 0.1 0.5 0.9 0.99"
+#probList="0.01"
+
+for i in $probList; do
+	echo "ENCODING"
+	"$encode" "$origFile" "$numBlocks" "$blockSize" "$i" > "$encFile" || \
+	  panic "encoder failed"
+	echo "DECODING"
+	"$decode" < "$encFile" > "$decFile" || \
+	  panic "decoder failed"
+	diff "$origFile" "$decFile"
+	status=$?
+	if [ $status -ne 0 ]; then
+		panic "original and decoded data differ"
+	else
+		echo "original and decoded data are identical"
+	fi
+done
+

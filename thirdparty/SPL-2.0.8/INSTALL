@@ -1,0 +1,138 @@
+Installing the SPL Software
+===========================
+
+The SPL software should build on most Linux systems with a C++ compiler that
+supports C++14.
+
+Installation Steps
+------------------
+
+In what follows, $SOURCE_DIR denotes the top-level directory of the SPL
+software distribution (i.e., the directory containing the INSTALL file that
+you are currently reading), $BUILD_DIR denote denotes a directory (which is
+either empty or to be newly created) to be used for building the software,
+and $INSTALL_DIR denotes the directory under which the software should
+be installed.
+
+Note that in-source builds are not supported.  So, $BUILD_DIR must be
+different from $SOURCE_DIR.
+
+To build the software, the following steps are required (in order):
+
+1. Install the prerequisite libraries.
+
+Ensure that all of the libraries needed by the SPL software are installed
+on your system.  This includes the following libraries:
+
+    1) Computational Geometry Algorithms Library (CGAL)
+    http://www.cgal.org
+
+    2) OpenGL Utility Toolkit (GLUT)
+    http://www.opengl.org/resources/libraries/glut/
+    http://freeglut.sourceforge.net
+
+    3) Sndfile Library
+    http://www.mega-nerd.com/libsndfile
+
+Some platforms provide a package manager for installing software packages and
+their dependencies.  For example, Fedora provides the DNF package manager,
+which is accessed via the dnf command, and Ubuntu provides the Apt package
+manager, which is accessed via the apt-get command.  If a package manager
+is available on your system, it can likely be used to simplify the process
+of installing some of the above prerequisite libraries.  For example, on a
+Fedora system with the DNF package manager, some of the above libraries
+could be installed by using a sequence of commands resembling the following:
+
+    dnf install CGAL CGAL-devel CGAL-demos-source mpfr-devel
+    dnf install freeglut freeglut-devel
+    dnf install libsndfile libsndfile-devel
+
+Note that the specific package names required by the package manager will
+vary from one version of Fedora to another and may not exactly match those
+appearing above.
+
+2. Generate the native build files.
+
+If the build directory $BUILD_DIR does not exist, create it by using the
+command:
+
+    mkdir -p $BUILD_DIR
+
+Generate the build files for the native build tool on your system using
+the command:
+
+    cd $BUILD_DIR
+    cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR $OPTIONS $SOURCE_DIR
+
+where $OPTIONS corresponds to zero or more -D options as described in the
+later section titled "Cmake Options".
+
+3. Build the software.
+
+To build the software, use the command:
+
+    cmake --build $BUILD_DIR --clean-first
+
+4. Test the software (prior to installation).
+
+Run some basic sanity checks on the software, prior to installation.
+Although this step is not strictly required, it is strongly recommended that
+this step not be skipped.  The test the software, use the command:
+
+    cd $BUILD_DIR
+    ctest --output-on-failure
+
+Some tests may require considerable time to complete.  So, be prepared to
+go for a coffee break.  After all of the tests have run, a message should
+be printed that indicates how many tests passed of those that were run.
+If any of the tests failed, this is an indication that something is wrong
+and the SPL software is not working reliably.  If such a situation arises,
+it is likely due to either an error made by the person installing the software
+or a bug in the software itself.
+
+Some of the tests may require graphics capabilities.  If the graphics
+display is not on the local machine, this can sometimes cause problems.
+For example, some tests may fail due to bugs in the graphics libraries that
+handle remote displays.  In such cases, it may be desirable to disable tests
+that require graphics capabilities.  To do this, set the environment variable
+SPL_MAKE_CHECK_ENABLE_GRAPHICS to 0 (before running ctest).
+
+5. Install the software.
+
+The actual installation of the software may require special administrator
+privileges depending on the target directory for installation (i.e.,
+$INSTALL_DIR).  To install the executables, libraries, include files, and
+other auxiliary data, use the command:
+
+    cmake --build $BUILD_DIR --target install
+
+Cmake Options
+-------------
+
+The option OPTION can be set to the value VALUE with a command-line option
+of the form -DOPTION=VALUE
+The following options are supported:
+
+CMAKE_INSTALL_PREFIX
+    Specify the installation directory.
+        Value: A directory name.
+
+CMAKE_BUILD_TYPE
+    Specify the build type (i.e., release or debug).
+    Valid values: Debug or Release
+
+SPL_ENABLE_ASAN
+        Enable the Address Sanitizer.
+        Valid values: true or false
+
+SPL_ENABLE_USAN
+        Enable the Undefined-Behavior Sanitizer.
+        Valid values: true or false
+
+SPL_ENABLE_LSAN
+        Enable the Leak Sanitizer.
+        Valid values: true or false
+
+SPL_ENABLE_MSAN
+        Enable the Memory Sanitizer.
+        Valid values: true or false

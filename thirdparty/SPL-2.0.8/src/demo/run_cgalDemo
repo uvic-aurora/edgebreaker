@@ -1,0 +1,10 @@
+#! /bin/bash
+
+cmd_dir=`dirname $0` || exit 1
+. $cmd_dir/../../bin/utilities || exit 1
+#start_log || panic "cannot start log"
+
+data_dir=$cmd_dir/../../data/polygon_meshes
+in_file=$data_dir/tetrahedron.off
+
+$cmd_dir/cgalDemo < $in_file || panic "test failed"

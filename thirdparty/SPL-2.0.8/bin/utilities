@@ -1,0 +1,77 @@
+#! /bin/bash
+
+panic()
+{
+	echo "ERROR: $@" 1>&2
+	exit 1
+}
+
+warn()
+{
+	echo "WARNING: $@" 1>&2
+}
+
+eprint()
+{
+	echo "$@" 1>&2
+}
+
+usage()
+{
+	echo "$0: bad usage"
+	exit 2
+}
+
+get_tmp_dir()
+{
+	local package
+	package="spl"
+	if [ $# -ne 1 ]; then
+		return 1
+	fi
+	local name
+	name="$1"
+	echo "/tmp/$package-$USER@$HOSTNAME/$name-$$"
+}
+
+get_log_file()
+{
+	local tmp_dir
+	tmp_dir=`get_tmp_dir` || return 1
+	local basename
+	basename=`basename $0` || return 1
+	echo "$tmp_dir/${basename}__log"
+}
+
+start_log()
+{
+	local log_file
+	make_tmp_dir > /dev/null || return 1
+	log_file=`get_log_file` || return 1
+	eprint "************************************************************"
+	eprint "Redirecting all output to log file $log_file"
+	eprint "Check this log file for error messages."
+	eprint "ERROR MESSAGES WILL ONLY BE OUTPUT TO THE LOG FILE."
+	eprint "TO DETERMINE IF THE SCRIPT WAS SUCCESSFUL, CHECK THE EXIT STATUS."
+	eprint "An exit status of zero indicates success."
+	eprint "Any other value for the exit status indicates failure."
+	eprint "************************************************************"
+	exec > "$log_file" 2>&1
+}
+
+make_tmp_dir()
+{
+	local name
+	if [ $# -ge 1 ]; then
+		name="$1"
+	else
+		name=`basename $0`
+	fi
+	local tmp_dir
+	tmp_dir=`get_tmp_dir "$name"` || return 1
+	if [ ! -d "$tmp_dir" ]; then
+		mkdir -p "$tmp_dir" || return 1
+	fi
+	echo "$tmp_dir"
+}
+
