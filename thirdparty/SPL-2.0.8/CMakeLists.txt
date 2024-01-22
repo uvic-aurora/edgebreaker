@@ -24,7 +24,7 @@ set(SPL_VERSION
 ################################################################################
 
 option(SPL_ROUNDING_MATH "Add -frounding-math option to compiler" true)
-option(SPL_ENABLE_DOC "Enable building of the documentation" true)
+option(SPL_ENABLE_DOC "Enable building of the documentation" false)
 
 ################################################################################
 
