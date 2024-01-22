@@ -94,6 +94,7 @@ Circ_list<T>& Circ_list<T>::operator=(Circ_list<T>&& c) {
     // Swap the current list with list c
     std::swap(head, c.head);
     std::swap(length, c.length);
+	return *this;
 }
 
 
@@ -436,6 +437,7 @@ Description:
 template <class T>
 Circ_list_circulator<T>& Circ_list_circulator<T>::operator=(const Circ_list_circulator& other) {
     cur_node = other.cur_node; 
+	return *this;
 }
 
 
@@ -508,6 +510,7 @@ Description:
 template <class T>
 Circ_list_const_circulator<T>& Circ_list_const_circulator<T>::operator=(const Circ_list_const_circulator<T>& other) {
     cur_node = other.cur_node; 
+	return *this;
 }
 
 
