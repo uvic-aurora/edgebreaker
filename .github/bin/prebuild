@@ -33,7 +33,12 @@ ubuntu)
 	  panic "apt-get install failed"
 	;;
 macos)
+	export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
+	export HOMEBREW_NO_INSTALL_CLEANUP=1
 	brew update || panic "brew update failed"
+	#for package in cgal freeglut; do
+	#	brew uninstall "$package" || echo "uninstall failed for $package"
+	#done
 	brew install cgal freeglut || panic "brew install failed"
 	;;
 windows)
