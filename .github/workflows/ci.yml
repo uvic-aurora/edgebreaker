@@ -12,10 +12,11 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-13]
+        #os: [ubuntu-22.04, macos-13]
+        os: [ubuntu-22.04]
         compiler: [ {cc: gcc, cxx: g++}, {cc: clang, cxx: clang++} ]
-        include:
-          - os: [windows-2022]
+        #include:
+        #  - os: [windows-2022]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:

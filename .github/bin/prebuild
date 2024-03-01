@@ -29,7 +29,8 @@ EOF
 case "$os" in
 ubuntu)
 	sudo apt-get update || panic "apt-get update failed"
-	sudo apt-get install -y libcgal-dev || panic "apt-get install failed"
+	sudo apt-get install -y libcgal-dev freeglut3-dev || \
+	  panic "apt-get install failed"
 	;;
 macos)
 	brew update || panic "brew update failed"
