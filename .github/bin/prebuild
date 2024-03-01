@@ -34,7 +34,7 @@ ubuntu)
 	;;
 macos)
 	brew update || panic "brew update failed"
-	brew install cgal || panic "brew install failed"
+	brew install cgal freeglut || panic "brew install failed"
 	;;
 windows)
 	;;
