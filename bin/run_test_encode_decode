@@ -6,6 +6,14 @@ panic()
 	exit 1
 }
 
+perform_cleanup()
+{
+	if [ -n "$tmp_dir" -a -d "$tmp_dir" ]; then
+		rm -rf "$tmp_dir" || \
+		  echo "warning: cannot remove temporary directory $tmp_dir"
+	fi
+}
+
 self_dir="$(dirname "$0")" || panic
 
 cmake_source_dir="$CMAKE_SOURCE_DIR"
@@ -23,6 +31,22 @@ data_dir="$top_dir/data"
 
 encode_mesh="$cmake_binary_dir/src/encode_mesh"
 decode_mesh="$cmake_binary_dir/src/decode_mesh"
+
+tmp_dir_template="/tmp/edgebreaker-XXXXXXXX"
+cleanup=1
+view_mesh=0
+
+while getopts :VC option; do
+	case "$option" in
+	V)
+		view_mesh=1;;
+	C)
+		cleanup=0;;
+	*)
+		usage "invalid option $OPTARG";;
+	esac
+done
+shift $((OPTIND - 1))
 
 if [ ! -x "$encode_mesh" ]; then
 	panic "$encode_mesh does not exist"
@@ -45,6 +69,12 @@ if [ "${#in_files[@]}" -eq 0 ]; then
 	)
 fi
 
+tmp_dir="$(mktemp -d "$tmp_dir_template")" || \
+  panic "cannot create temporary directory"
+if [ "$cleanup" -ne 0 ]; then
+	trap perform_cleanup EXIT
+fi
+
 passed_tests=()
 failed_tests=()
 
@@ -54,16 +84,44 @@ for in_file in "${in_files[@]}"; do
 	test="$(basename "$in_file" .off)" || panic "basename failed"
 	echo "Test: $test"
 
-	echo "RUNNING: $encode_mesh < $in_file | $decode_mesh > /dev/null"
-	"$encode_mesh" < "$in_file" | "$decode_mesh" > /dev/null
-	status=(${PIPESTATUS[@]})
-	enc_status="${status[0]}"
-	dec_status="${status[1]}"
-	if [ "$enc_status" -ne 0 -a "$dec_status" -ne 0 ]; then
+	enc_file="$tmp_dir/enc_file.eb"
+	dec_file="$tmp_dir/dec_file.off"
+	diff_file="$tmp_dir/diff"
+
+	for file in "$enc_file" "$dec_file" "$diff_file"; do
+		if [ -e "$file" ]; then
+			rm -f "$file" || panic
+		fi
+	done
+
+	"$encode_mesh" < "$in_file" > "$enc_file"
+	enc_status=$?
+
+	"$decode_mesh" < "$enc_file" > "$dec_file"
+	dec_status=$?
+
+	if [ "$enc_status" -ne 0 -o "$dec_status" -ne 0 ]; then
 		echo "test $test failed with status $enc_status $dec_status"
 		failed_tests+=("$test")
 	else
 		passed_tests+=("$test")
+	fi
+
+	if [ "$enc_status" -eq 0 -a "$dec_status" -eq 0 ]; then
+		if [ "$view_mesh" -ne 0 ]; then
+			echo "viewing $in_file"
+			meshlab "$in_file"
+			echo "viewing $dec_file"
+			meshlab "$dec_file"
+		fi
+		diff "$in_file" "$dec_file" > "$diff_file"
+		diff_status=$?
+		if [ "$diff_status" -ne 0 ]; then
+			echo "Due to quantization, the vertex coordinates may differ."
+			echo "========== START OF DIFF =========="
+			cat "$diff_file"
+			echo "========== END OF DIFF =========="
+		fi
 	fi
 
 done

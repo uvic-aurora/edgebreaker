@@ -674,70 +674,129 @@ bool Decoder::read_ebfile() {
     //////////////////////////////////////////////////////////
    
     // signature
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     unsigned int sig = ifile_eb.getBits(max_bits_to_put);
     if (sig != 696610198) {
         std::cerr << "ERROR: EB file in the bad condition!\n";
+        return false;
     }
     
     // code series
     ifile_eb.getBits(redundant_bits);
     int code_series = ifile_eb.getBits(max_bits_to_put);
+    if (code_series < 0) {
+        std::cerr << "cannot read code series!\n";
+        return false;
+    }
     
     // hist_str_len
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     Vertex_index hist_str_len = ifile_eb.getBits(max_bits_to_put);
     
     // vertices_cnt
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     Vertex_index vertices_cnt = ifile_eb.getBits(max_bits_to_put);
     
     // hole_cnt
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     unsigned int hole_cnt = ifile_eb.getBits(max_bits_to_put);
     
     // handle_cnt
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     unsigned int handle_cnt = ifile_eb.getBits(max_bits_to_put);
     
     // offset_cnt
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     unsigned int offset_cnt = ifile_eb.getBits(max_bits_to_put);
     
     // x_coor_bits
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     x_coor_bits = ifile_eb.getBits(max_bits_to_put);
     
     // y_coor_bits
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     y_coor_bits = ifile_eb.getBits(max_bits_to_put);
     
     // z_coor_bits
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     z_coor_bits = ifile_eb.getBits(max_bits_to_put);
     
     // step_size x coordinate
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     Quant_index coef_x = ifile_eb.getBits(max_bits_to_put);
     
-    ifile_eb.getBits(1);
+    if (ifile_eb.getBits(1) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     int signum_x = ifile_eb.getBits(1);
+    if (signum_x < 0) {
+        std::cerr << "cannot read sign x\n";
+        return false;
+    }
     int exp_x = ifile_eb.getBits(max_bits_to_put);
+    if (exp_x < 0) {
+        std::cerr << "cannot read exponent x\n";
+        return false;
+    }
     if (signum_x == 0) {
         // Negative exponent
         exp_x = -1 * exp_x;
     }
     
     double quan_x = pow2double(coef_x, exp_x);
-
     
     // step_size y coordinate
-    ifile_eb.getBits(redundant_bits);
+    if (ifile_eb.getBits(redundant_bits) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     Quant_index coef_y = ifile_eb.getBits(max_bits_to_put);
     
-    ifile_eb.getBits(1);
+    if (ifile_eb.getBits(1) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     int signum_y = ifile_eb.getBits(1);
+    if (signum_y < 0) {
+        std::cerr << "cannot read sign y\n";
+        return false;
+    }
     int exp_y = ifile_eb.getBits(max_bits_to_put);
+    if (exp_y < 0) {
+        std::cerr << "cannot read exponent y\n";
+        return false;
+    }
     if (signum_y == 0) {
         // Negative exponent
         exp_y = -1 * exp_y;
@@ -745,21 +804,30 @@ bool Decoder::read_ebfile() {
     
     double quan_y = pow2double(coef_y, exp_y);
     
-    
     // step_size z coordinate
     ifile_eb.getBits(redundant_bits);
     Quant_index coef_z = ifile_eb.getBits(max_bits_to_put);
     
-    ifile_eb.getBits(1);
+    if (ifile_eb.getBits(1) < 0) {
+        std::cerr << "cannot read bits 0\n";
+        return false;
+    }
     int signum_z = ifile_eb.getBits(1);
+    if (signum_z < 0) {
+        std::cerr << "cannot read sign z\n";
+        return false;
+    }
     int exp_z = ifile_eb.getBits(max_bits_to_put);
+    if (exp_z < 0) {
+        std::cerr << "cannot read exponent z\n";
+        return false;
+    }
     if (signum_z == 0) {
         // Negative exponent
         exp_z = -1 * exp_z;
     }
     
     double quan_z = pow2double(coef_z, exp_z);
-        
     
     // Generate the quantization step size
     step_size = Point(quan_x, quan_y, quan_z);
@@ -791,6 +859,10 @@ bool Decoder::read_ebfile() {
     std::string history_string;
     for(auto i = 0; i < hist_str_len; ++i) {
         int bit = ifile_eb.getBits(1);
+        if (bit < 0) {
+            std::cerr << "cannot read history bit\n";
+            return false;
+        }
         history_string += static_cast<char>(bit + '0');
     }
     
@@ -818,18 +890,31 @@ bool Decoder::read_ebfile() {
     // Make sure op-code sequence vector is not empty
     assert(!history_vec.empty());
     
-    
     //////////////////////////////////////////////////////////
     // Read the M table part of the EB file
     //////////////////////////////////////////////////////////
     
     if (hole_cnt != 0) {
         for (int i = 0; i < hole_cnt; ++i) {
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int skip_m_cnt = ifile_eb.getBits(max_bits_to_put);
+            if (skip_m_cnt < 0) {
+                std::cerr << "cannot read skip m count\n";
+                return false;
+            }
             
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int hole_len = ifile_eb.getBits(max_bits_to_put);
+            if (hole_len < 0) {
+                std::cerr << "cannot read hole length\n";
+                return false;
+            }
             
             std::pair<int, int> m_item(skip_m_cnt, hole_len);
             m_table.push_back(m_item);
@@ -842,21 +927,41 @@ bool Decoder::read_ebfile() {
         assert(!m_table.empty());
     }
     
-    
     //////////////////////////////////////////////////////////
     // Read the M' table part of the EB file
     //////////////////////////////////////////////////////////
     
     if (handle_cnt != 0) {
         for (int i = 0; i < handle_cnt; ++i) {
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int pos = ifile_eb.getBits(max_bits_to_put);
+            if (pos < 0) {
+                std::cerr << "cannot read pos\n";
+                return false;
+            }
             
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int offset_val = ifile_eb.getBits(max_bits_to_put);
+            if (offset_val < 0) {
+                std::cerr << "cannot read offset val\n";
+                return false;
+            }
             
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int skip_h_cnt = ifile_eb.getBits(max_bits_to_put);
+            if (skip_h_cnt < 0) {
+                std::cerr << "cannot read skip h count\n";
+                return false;
+            }
             
             Mesh_handle handle_item(pos, offset_val, skip_h_cnt);
             h_table.push_back(handle_item);
@@ -881,11 +986,25 @@ bool Decoder::read_ebfile() {
     
     if (offset_cnt != 0) {
         for (int i = 0; i < offset_cnt; ++i) {
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int s_type_cnt = ifile_eb.getBits(max_bits_to_put);
+            if (s_type_cnt < 0) {
+                std::cerr << "cannot read s type count\n";
+                return false;
+            }
             
-            ifile_eb.getBits(redundant_bits);
+            if (ifile_eb.getBits(redundant_bits) < 0) {
+                std::cerr << "cannot read bits 0\n";
+                return false;
+            }
             int offset_val = ifile_eb.getBits(max_bits_to_put);
+            if (offset_val < 0) {
+                std::cerr << "cannot read offset val\n";
+                return false;
+            }
             
             std::pair<int, int> offset_pair(s_type_cnt, offset_val);
             offset_vec.push_back(offset_pair);

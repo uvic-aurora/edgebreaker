@@ -1,0 +1,52 @@
+#! /usr/bin/env bash
+
+panic()
+{
+	echo "ERROR: $*"
+	exit 1
+}
+
+self_path="$(realpath "$0")" || \
+  panic "realpath failed"
+self_dir="$(dirname "$self_path")" || \
+  panic "cannot get dirname"
+
+#source_dir="$self_dir/../.."
+source_dir="$self_dir/.."
+build_dir="$source_dir/tmp_cmake/build"
+install_dir="$source_dir/tmp_cmake/install"
+
+asan=0
+ubsan=0
+cmake_build_type=RelWithDebInfo
+
+while getopts :d option; do
+	case "$option" in
+	d)
+		asan=1
+		ubsan=1
+		cmake_build_type=Debug
+		;;
+	*)
+		usage "invalid option $OPTARG";;
+	esac
+done
+shift $((OPTIND - 1))
+
+cmake_config_options+=(-DCMAKE_BUILDTYPE="$cmake_build_type")
+cmake_config_options+=(-DENABLE_ASAN="$asan")
+cmake_config_options+=(-DENABLE_USAN="$ubsan")
+cmake_config_options+=(-DCMAKE_VERBOSE_MAKEFILE=1)
+cmake_config_options+=(-DCMAKE_INSTALL_PREFIX="$install_dir")
+
+cmake -H"$source_dir" -B"$build_dir" "${cmake_config_options[@]}" || \
+  panic "configure failed"
+
+cmake --build "$build_dir" || \
+  panic "build failed"
+
+cmake --build "$build_dir" --target check || \
+  panic "test failed"
+
+cmake --build "$build_dir" --target install || \
+  panic "install failed"

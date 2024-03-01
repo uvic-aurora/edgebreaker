@@ -1,25 +1,3 @@
 #! /usr/bin/env bash
 
-panic()
-{
-	echo "ERROR: $*"
-	exit 1
-}
-
-self_dir="$(dirname "$0")" || panic "dirname failed"
-
-source_dir="$self_dir/../.."
-build_dir="$source_dir/tmp_cmake/build"
-install_dir="$source_dir/tmp_cmake/install"
-
-cmake -H"$source_dir" -B"$build_dir" -DCMAKE_VERBOSE_MAKEFILE=1 -DCMAKE_INSTALL_PREFIX="$install_dir" || \
-  panic "configure failed"
-
-cmake --build "$build_dir" || \
-  panic "build failed"
-
-cmake --build "$build_dir" --target check || \
-  panic "test failed"
-
-cmake --build "$build_dir" --target install || \
-  panic "install failed"
+exec ../../bin/build "$@"
