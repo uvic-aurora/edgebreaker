@@ -1,3 +1,5 @@
 #! /usr/bin/env bash
 
-exec ../../bin/build "$@"
+self_path="$(realpath "$0")" || exit 127
+self_dir="$(dirname "$self_path")" || exit 127
+exec "$self_dir/../../bin/build" "$@"
