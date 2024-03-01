@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-13]
+        compiler: [ {cc: gcc, cxx: g++}, {cc: clang, cxx: clang++} ]
+        include:
+          - os: [windows-2022]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4.1.1
+    ############################################################
+    - name: testing
+      env:
+        CC: ${{ matrix.compiler.cc }}
+        CXX: ${{ matrix.compiler.cxx }}
+      shell: bash
+      run: .github/bin/build
+    ############################################################

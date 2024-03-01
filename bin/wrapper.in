@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+function eecho()
+{
+	echo "$@" 1>&2
+}
+
+export CMAKE_SOURCE_DIR="@CMAKE_SOURCE_DIR@"
+export CMAKE_BINARY_DIR="@CMAKE_BINARY_DIR@"
+
+command=("$@")
+eecho "RUNNING: ${command[*]}"
+"${command[@]}"

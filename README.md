@@ -23,8 +23,10 @@ which to install the Edgebreaker software.
 
 To install the Edgebreaker software with CMake, use the command sequence:
 
-  * cmake -H$TOP_DIR -B$BUILD_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
-  * cmake --build $BUILD_DIR --target install
+    cmake -H$TOP_DIR -B$BUILD_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+    cmake --build $BUILD_DIR
+    cmake --build $BUILD_DIR --target check
+    cmake --build $BUILD_DIR --target install
 
 Using the Software
 ------------------
@@ -32,4 +34,3 @@ Using the Software
 Detailed information on the use of the software can be found in
 Chapter 4 (titled "Software") of the MEng project report in the
 report directory.
-

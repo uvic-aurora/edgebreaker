@@ -1,0 +1,88 @@
+#! /usr/bin/env bash
+
+panic()
+{
+	echo "ERROR: $*"
+	exit 1
+}
+
+self_dir="$(dirname "$0")" || panic
+
+cmake_source_dir="$CMAKE_SOURCE_DIR"
+cmake_binary_dir="$CMAKE_BINARY_DIR"
+
+if [ -z "$cmake_source_dir" ]; then
+	cmake_source_dir="$self_dir/.."
+fi
+if [ -z "$cmake_binary_dir" ]; then
+	cmake_binary_dir="$self_dir/../tmp_cmake"
+fi
+
+top_dir="$cmake_source_dir"
+data_dir="$top_dir/data"
+
+encode_mesh="$cmake_binary_dir/src/encode_mesh"
+decode_mesh="$cmake_binary_dir/src/decode_mesh"
+
+if [ ! -x "$encode_mesh" ]; then
+	panic "$encode_mesh does not exist"
+fi
+if [ ! -x "$decode_mesh" ]; then
+	panic "$decode_mesh does not exist"
+fi
+
+in_files=(
+	#"$data_dir"/2h.off
+	"$data_dir"/meng_report_example_1.off
+	"$data_dir"/meng_report_example_2.off
+	"$data_dir"/meng_report_example_3.off
+	"$data_dir"/meng_report_example_4.off
+)
+
+if [ "${#in_files[@]}" -eq 0 ]; then
+	in_files=(
+		"$data_dir"/*.off
+	)
+fi
+
+passed_tests=()
+failed_tests=()
+
+for in_file in "${in_files[@]}"; do
+
+	echo "============================================================"
+	test="$(basename "$in_file" .off)" || panic "basename failed"
+	echo "Test: $test"
+
+	echo "RUNNING: $encode_mesh < $in_file | $decode_mesh > /dev/null"
+	"$encode_mesh" < "$in_file" | "$decode_mesh" > /dev/null
+	status=(${PIPESTATUS[@]})
+	enc_status="${status[0]}"
+	dec_status="${status[1]}"
+	if [ "$enc_status" -ne 0 -a "$dec_status" -ne 0 ]; then
+		echo "test $test failed with status $enc_status $dec_status"
+		failed_tests+=("$test")
+	else
+		passed_tests+=("$test")
+	fi
+
+done
+
+exit_status=0
+
+echo "============================================================"
+
+echo "number of passed tests: ${#passed_tests[@]}"
+echo "number of failed tests: ${#failed_tests[@]}"
+
+if [ "${#failed_tests[@]}" -ne 0 ]; then
+	echo "The following tests failed:"
+	for test in "${failed_tests[@]}"; do
+		echo "    $test"
+	done
+	exit_status=1
+fi
+
+echo "============================================================"
+
+exit "$exit_status"
